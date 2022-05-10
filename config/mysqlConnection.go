@@ -1,4 +1,4 @@
-package api
+package config
 
 import (
 	"database/sql"
@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-func DbConnection() *sql.DB {
+func MysqlConnection() *sql.DB {
 	godotenv.Load(".env")
 
 	config := mysql.Config{
@@ -22,6 +22,13 @@ func DbConnection() *sql.DB {
 	if err != nil {
 		panic(err)
 	}
-	db := sql.OpenDB(connecter)
-	return db
+
+	database := sql.OpenDB(connecter)
+	err = database.Ping()
+	if err != nil {
+		panic(err)
+	}
+
+	return database
+
 }

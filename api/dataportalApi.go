@@ -3,32 +3,24 @@ package api
 import (
 	"encoding/json"
 	"fmt"
+	"goapi/models"
 	"io/ioutil"
 	"net/http"
 )
 
-func ApiCall(url string) {
+func ApiCall(url string) models.ResData {
 	res, err := http.Get(url)
 	if err != nil {
 		panic(err)
 	}
 	defer res.Body.Close()
 
-	data, err := ioutil.ReadAll(res.Body)
+	data, _ := ioutil.ReadAll(res.Body)
+	var apiObj models.ResData
+	err = json.Unmarshal(data, &apiObj)
 	if err != nil {
-		panic(err)
+		fmt.Println("Failed to json.Unmarshal : ", err)
 	}
 
-	jsonBytes, _ := json.Marshal(string(data))
-	fmt.Println(string(jsonBytes))
-	//jsonString := string(jsonBytes)
-	//
-	//var apiObj = models.ResData{}
-	//
-	//err = json.Unmarshal([]byte(jsonString), &apiObj)
-	//
-	//if err != nil {
-	//	fmt.Println("Failed to json.Unmarshal", err)
-	//}
-	//return apiObj
+	return apiObj //JSONObject
 }

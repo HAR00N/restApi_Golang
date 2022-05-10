@@ -11,13 +11,17 @@ type Header struct {
 }
 
 type Body struct {
-	PageNo     int     `json:"pageNo"`
-	TotalCount int     `json:"totalCount"`
-	NumOfRows  int     `json:"numOfRows"`
-	Items      []Items `json:"items"`
+	Items      Items `json:"items"`
+	PageNo     int   `json:"pageNo"`
+	TotalCount int   `json:"totalCount"`
+	NumOfRows  int   `json:"numOfRows"`
 }
 
 type Items struct {
+	Item []Item `json:"item"`
+}
+
+type Item struct {
 	RegDt    string `json:"regDt"`
 	ThumbUrl string `json:"thumbUrl"`
 	Title    string `json:"title"`

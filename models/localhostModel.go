@@ -1,7 +1,7 @@
 package models
 
 type Localhost struct {
-	Uid      int    `json:"uid"`
-	User_id  string `json:"user_id"`
-	Password string `json:"password"`
+	uid      int    `json:"uid"`
+	user_id  string `json:"user_id"`
+	password string `json:"password"`
 }

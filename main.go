@@ -12,6 +12,14 @@ import (
 
 func main() {
 	godotenv.Load(".env")
+	url := os.Getenv("covidUrl") + os.Getenv("covidKey")
+
+	api.CovidCall(url)
+
+}
+
+func main2() {
+	godotenv.Load(".env")
 	url := os.Getenv("apiUrl") + SysKeyword.AND() + os.Getenv("apiKey")
 
 	database := config.DbConnection()
@@ -30,19 +38,18 @@ func main() {
 
 }
 
-func main2() {
-	database := config.DbConnection()
-	defer database.Close()
-
-	result, err := database.Exec(`insert into framework_resource value (4, "MJH", "dain")`)
-	if err != nil {
-		panic(err)
-	}
-	nRow, err := result.RowsAffected()
-	fmt.Println("insert Count : ", nRow)
+func ma3in() {
+	//database := config.DbConnection()
+	//defer database.Close()
+	//
+	//result, err := database.Query("select * from framework_resource")
+	//if err != nil {
+	//	panic(err)
+	//}
+	api.DbGetDao("select * from framework_resource")
 }
 
-func mai22n() {
+func main23() {
 	godotenv.Load(".env")
 	url := os.Getenv("apiUrl") + SysKeyword.AND() + os.Getenv("apiKey")
 
